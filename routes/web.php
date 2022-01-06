@@ -39,4 +39,5 @@ Route::post('/login', [SessionsController::class, 'store'])->middleware('guest')
 
 Route::middleware('can:admin')->group(function () {
     Route::resource('admin/posts', AdminPostController::class)->except('show');
+    Route::patch('/admin/posts/{post}/publish', 'App\Http\Controllers\AdminPostController@publishPost');
 });

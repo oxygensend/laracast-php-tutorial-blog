@@ -14,7 +14,7 @@
              </div>
 
              <x-form.textarea name="excerpt"> {{ old('excerpt', $post->excerpt) }}</x-form.textarea>
-             <x-form.textarea name="body"> {{ old('body', $post->body) }}</x-form.textarea>
+             <x-form.textarea name="body" rows="15"> {{ old('body', $post->body) }}</x-form.textarea>
  
              <div class="mb-6">
                <x-form.label name="category" /> 

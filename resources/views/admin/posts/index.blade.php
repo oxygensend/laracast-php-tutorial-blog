@@ -22,20 +22,25 @@
                             </td>
                             
                             <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                Published
-                            </span>
+                              <form method="POST" action="/admin/posts/{{$post->id}}/publish">
+                                @csrf
+                                @method("PATCH")
+                                <button class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{!$post->published ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}}">
+                                  {{ !$post->published ?  'Publish' : 'Unpublish' }} 
+                      
+                                </button>
+                              </form>
                             </td>
                             
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <a href="/admin/posts/{{$post->slug}}/edit" class="text-blue-500 hover:text-blue-500">Edit</a>
+                            <a href="/admin/posts/{{$post->id}}/edit" class="text-blue-500 hover:text-blue-500">Edit</a>
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                               <form method="POST" action="/admin/posts/{{ $post->id }}">
                                 @csrf
                                 @method('DELETE')
-                                <button class="text-xs text-gray-400">Delete</button>
+                                <button onclick="return confirm('Are you sure?')"class="text-xs text-gray-400">Delete</button>
 
                               </form>
                             </td>

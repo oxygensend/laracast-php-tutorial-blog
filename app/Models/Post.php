@@ -8,9 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'excerpt', 'body','category_id', 'slug'];
+    protected $fillable = ['title', 'excerpt', 'body','category_id', 'slug', 'published'];
     protected $with = ['category','author'];
-
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -47,5 +46,6 @@ class Post extends Model
             fn ($query, $author) => $query
                 ->whereHas('author', fn ($query) => $query->where('username', $author))
         );
+        $query->where('published', 1);
     }
 }

@@ -23,6 +23,7 @@ class CreatePostsTable extends Migration
             $table->string('thumbnail')->nullable();
             $table->text('body');
             $table->timestamps();
+            $table->boolean('published')->default(false);
             $table->timestamp('published_at')->nullable();
         });
     }

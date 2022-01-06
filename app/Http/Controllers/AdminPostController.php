@@ -66,6 +66,13 @@ class AdminPostController extends Controller
         return redirect('/admin/posts/')->with('success', 'Post deleted.');
     }
 
+    public function publishPost(Post $post)
+    {
+        $post->update(['published' => !$post->published]);
+
+        $msg = $post->published ? 'published' : 'unpublished';
+        return redirect('/admin/posts/')->with('success', 'Post has been ' . $msg);
+    }
     public function postValidation(Post $post = null) : array
     {
         $post ??= new Post();
@@ -74,7 +81,8 @@ class AdminPostController extends Controller
             'thumbnail' => [$post->exists() ? '' : 'required', 'image'],
             'excerpt' => 'required',
             'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')]
+            'category_id' => ['required', Rule::exists('categories', 'id')],
+            'published' => 'boolean'
         ]);
     }
 }

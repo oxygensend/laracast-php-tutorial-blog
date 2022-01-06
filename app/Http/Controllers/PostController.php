@@ -11,9 +11,10 @@ class PostController extends Controller
 
     public function index()
     {
+        //ddd(Post::all()->filter(fn ($post) => $post->published == 1));
         return view('posts.index', [
             'posts' => Post::latest()->filter(request()->only('search', 'category', 'author'))
-                                    ->paginate(9)->withQueryString(),
+                                    ->paginate(9)->withQueryString()
         ]);
     }
 

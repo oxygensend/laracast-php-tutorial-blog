@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use phpDocumentor\Reflection\PseudoTypes\True_;
 
 class PostFactory extends Factory
 {
@@ -23,6 +24,7 @@ class PostFactory extends Factory
             'thumbnail' => 'thumbnails/1641287365.JPG',
             'excerpt' => '<p>' . implode('</p><p>', $this->faker->paragraphs(2)) . '</p>',
             'body' => '<p>' . implode('</p><p>', $this->faker->paragraphs(6)) . '</p>',
+            'published' => true,
         ];
     }
 }
